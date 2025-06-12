@@ -1,0 +1,5 @@
+Features
+1] it shows the created tasks/notes
+2] the individual notes cards can be deleted from the gui
+3] no animations needed for now
+4] 

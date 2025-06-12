@@ -1,0 +1,25 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "basic todo app .. main focous on learing the backend part (using express , node)",
+  "keywords": [
+    "express",
+    "todo",
+    "node"
+  ],
+  "license": "ISC",
+  "author": "alok",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "start",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
