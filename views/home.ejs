@@ -10,22 +10,23 @@
     <div class="flex flex-col mt-20 items-center w-full">
         <h1 class="text-4xl text-white">NOTES APP</h1>
         <form action="/create" method="post" class="flex bg-cyan-100 flex-col  items-center w-3/4 rounded-lg p-5">
+            <!-- on submitting we redirect to /create with post method  || title of task (name) = title ; content in the task (name) = content -->
             <input type="text" placeholder="TITLE" name="title" class="py-2 px-4 my-3  text-2xl rounded-lg text-center bg-slate-700 w-1/3 text-sky-100 ">
             <textarea name="content" class="px-4 py-2 bg-slate-700 text-blue-50 w-5/6 text-xl rounded-lg resize-none " rows="4"></textarea>
             <input type="submit" value="Submit" class="bg-slate-700 hover:bg-red-800 text-red-100 hover:text-blue-50 mt-3 px-4 py-2 text-2xl rounded-lg transition-colors duration-150 easi-in">
         </form>
 
         <div class="text-white grid grid-cols-3 mt-5 w-4/5 gap-4">
-            <% if (file_DB.length==0) { %>
+            <!-- when there is files in the files_db we jst read the title and showcase it here .. if no files are present then we jst show no files present -->
+            <% if (fileNames.length==0) { %>
                 <h2 class="col-span-3 text-center text-4xl mt-5">no tasks found</h2><% }%>
             
-                <% file_DB.forEach( e =>{ %>
+                <% fileNames.forEach( e =>{ %>
                     <div class="bg-slate-600 col-span-1 rounded-lg px-4 py-4  ">
                         <h2 class="text-sky-100 text-xl mb-3"><%= e.substring(0,e.length-4) %></h2>
-                        <details><summary class="text-blue-500 cursor-pointer w-fit underline">read more</summary><p>yoohohoh</p></details>
+                        <a href="/files/:<%= e %>" class="text-blue-500 cursor-pointer w-fit underline">Open</a>
                     </div>
                 <% }) %>
-
         </div>
     </div>
 </body>
