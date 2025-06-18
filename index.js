@@ -63,9 +63,8 @@ app.delete('/files/:fn',(req,res)=>{
   console.log('delete middleware called called')
   fs.rm(`./files_db/${req.params.fn}`,(err)=>{
     if (err) {console.log(err)
-      res.status(500).json({sucess:false,status:500})
+      return res.status(500).json({sucess:false,status:500})
     }
     res.json({sucess:true,status:200})
-    
   })
 })
