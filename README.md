@@ -4,6 +4,12 @@ A simple yet functional Todo App built using **Express.js** and **EJS**, designe
 
 ---
 
+![image](https://github.com/user-attachments/assets/eec206cb-eb70-4545-86d5-0dcac25566c5)
+
+![image](https://github.com/user-attachments/assets/8eb60cce-d3b5-4f01-b223-c48a3019fa3a)
+
+![image](https://github.com/user-attachments/assets/b91a30f7-4f8c-4803-a678-958d2da5ce78)
+
 ## Features
 
 - Add new todos  
