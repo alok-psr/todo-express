@@ -18,15 +18,16 @@ app.listen(port, () => {
 // .get for '/' whenever the user on the default '/' page we read the files_db and show the available tasks .. mainly their title 
 app.get('/',(req,res)=>{
     fs.readdir('./files_db/',(err,files)=>{
-      res.render('home',{ fileNames : files })
+      res.render('home',{ fileNames : files, file_cnt:'',file_tit:'' })
     })
 });
 
 
 
-// .post for 'create' ==> when the data recieved from the user (title and content of the task) we create a new file in the files_db
 
 // get does not have req.body like post request .... it has req.query 
+
+// .post for 'create' ==> when the data recieved from the user (title and content of the task) we create a new file in the files_db
 app.post('/create' ,(req,res)=>{
   if (req.body.title == false ){
     console.log('fuckUBitch')
@@ -42,14 +43,29 @@ app.post('/create' ,(req,res)=>{
   }
 })
 
-// on files/:fn fn is the name of the file given which is selected by the user to oopen from the home.ejs side
+// on files/:fn here 'fn' is the name of the file given which is selected by the user to oopen from the home.ejs side
+// this api calls recieves the filename ... which it reads with fs.readfile the file name and content are sent as json in response
 app.get('/files/:fn',(req,res)=>{
   fs.readFile(`./files_db/${req.params.fn.substring(1,req.params.fn.length)}`,'utf8',(err,data)=>{
     if (err) {console.log(err)}
-    else console.log(data)
-    fs.readdir('./files_db',(err,file_name)=>{
-      res.render('home',{fileNames:file_name,file_cnt:data})
-      console.log('done')
-    })
+    
+    else {
+      const file_tit = req.params.fn.substring(1,req.params.fn.length-4)
+      const file_cnt = data
+
+      res.json({file_cnt ,file_tit })  
+      }
+  })
+})
+
+// to delete the fn coming frm delete req in files/fn
+app.delete('/files/:fn',(req,res)=>{
+  console.log('delete middleware called called')
+  fs.rm(`./files_db/${req.params.fn}`,(err)=>{
+    if (err) {console.log(err)
+      res.status(500).json({sucess:false,status:500})
+    }
+    res.json({sucess:true,status:200})
+    
   })
 })
